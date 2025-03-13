@@ -90,8 +90,20 @@ const FormBuilder = ({ formId }) => {
     alert("Form saved successfully!");
   };
 
-  // Publish form
   const publishForm = () => {
+    const formData = {
+      id: formId,
+      title: formTitle,
+      description: formDescription,
+      questions: fields,
+    };
+  
+    // Save the published form to localStorage
+    const publishedForms = JSON.parse(localStorage.getItem("publishedForms")) || {};
+    publishedForms[formId] = formData;
+    localStorage.setItem("publishedForms", JSON.stringify(publishedForms));
+  
+    // Generate the shareable link
     const shareableLink = `${window.location.origin}/form/${formId}`;
     console.log("Shareable Link:", shareableLink);
     alert(`Form published! Shareable link: ${shareableLink}`);
@@ -204,7 +216,7 @@ const FormBuilder = ({ formId }) => {
     if (isValid) {
       alert("Form submitted successfully!");
     } else {
-      alert("Please fix the errors before submitting.");
+      alert("Please fill required field.");
     }
   };
 

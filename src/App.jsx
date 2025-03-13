@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard';
 import FormEditor from './components/FormEditor';
 import FormPreview from './components/FormPreview';
 import CreateFormModal from './components/CreateFormModal';
+import PublishedForm from "./components/PublishedForm";
 import './App.css';
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
                             />
                         }
                     />
-
+                       <Route path="/form/:formId" element={<PublishedForm />} />
                     {/* Form Editor Route */}
                     <Route path="/edit/:id" element={<FormEditor forms={forms} />} />
 
