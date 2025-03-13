@@ -58,7 +58,7 @@ function App() {
                     <Route path="/edit/:id" element={<FormEditor forms={forms} />} />
 
                     {/* Form Preview Route */}
-                    <Route path="/preview/:id" element={<FormPreview forms={forms} />} />
+                    <Route path="/form/:formId" element={<PublishedForm  forms={forms} />} />
 
                     {/* Fallback Route for Unmatched Paths */}
                     <Route path="*" element={<div>404 - Page Not Found</div>} />

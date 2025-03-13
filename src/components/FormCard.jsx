@@ -8,7 +8,7 @@ const FormCard = ({ form }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handlePreview = () => navigate(`/preview/${form.id}`); // ✅ Fixed path
+    const handlePreview = () => navigate(`/form/${form.id}`); // ✅ Fixed path
     const handleEdit = () => navigate(`/edit/${form.id}`);       // ✅ Fixed path
 
     const handleDelete = () => {
