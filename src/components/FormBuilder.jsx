@@ -107,6 +107,8 @@ const FormBuilder = ({ formId }) => {
     const shareableLink = `${window.location.origin}/form/${formId}`;
     console.log("Shareable Link:", shareableLink);
     alert(`Form published! Shareable link: ${shareableLink}`);
+     // Redirect to the published form's preview page
+     navigate(`/form/${formId}`);
   };
 
   // Toggle preview
