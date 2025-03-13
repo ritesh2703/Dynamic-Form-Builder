@@ -27,7 +27,7 @@ const FormList = ({ forms, onDeleteForm }) => {
     }, []);
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-70  overflow-y-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
             {forms.length > 0 ? (
                 forms.map((form) => (
                     <div
