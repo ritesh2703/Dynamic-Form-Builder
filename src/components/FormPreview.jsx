@@ -286,7 +286,7 @@ const FormPreview = () => {
 
         <button
           onClick={handleSubmit}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          className="px-4 py-2 bg-white text-blue-600 rounded-md hover:bg-blue-600"
         >
           Submit
         </button>
