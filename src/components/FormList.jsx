@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteForm } from '../features/forms/formSlice'; // ✅ Delete functionality added
+import { deleteForm } from '../features/forms/formSlice';
 import { FaEllipsisV, FaEye, FaEdit, FaTrash } from 'react-icons/fa';
 
-const FormList = () => {
+const FormList = ({ forms, onDeleteForm }) => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const forms = useSelector((state) => state.forms.forms);
     const [dropdownId, setDropdownId] = useState(null);
 
     // Toggle dropdown visibility
@@ -28,16 +26,8 @@ const FormList = () => {
         return () => document.removeEventListener('click', handleOutsideClick);
     }, []);
 
-    // Delete Form Handler
-    const handleDeleteForm = (id) => {
-        const confirmDelete = window.confirm('Are you sure you want to delete this form?');
-        if (confirmDelete) {
-            dispatch(deleteForm(id));
-        }
-    };
-
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-70  overflow-y-auto">
             {forms.length > 0 ? (
                 forms.map((form) => (
                     <div
@@ -84,7 +74,7 @@ const FormList = () => {
                                     </button>
                                     <button
                                         className="flex items-center gap-2 w-full px-4 py-2 text-left text-red-500 hover:bg-red-100"
-                                        onClick={() => handleDeleteForm(form.id)}
+                                        onClick={() => onDeleteForm(form.id)}
                                     >
                                         <FaTrash /> Delete
                                     </button>

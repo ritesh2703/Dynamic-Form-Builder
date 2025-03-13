@@ -357,7 +357,7 @@ const FormBuilder = ({ formId }) => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen flex">
       {/* Sidebar */}
-      <div className="w-1/4 bg-white p-4 shadow-md">
+      <div className="w-1/4 bg-white p-4 shadow-md max-h-150 overflow-y-auto">
         <h2 className="text-lg font-bold mb-4">Fields</h2>
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="fields">
@@ -375,16 +375,33 @@ const FormBuilder = ({ formId }) => {
                         }`}
                         onClick={() => setSelectedField(field.id)}
                       >
-                        {field.label}
+                        <div className="flex justify-between items-center">
+                          <span>{field.label}</span>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent the click from selecting the field
+                              removeField(field.id);
+                            }}
+                            className="px-2 py-1 bg-white text-red-500 rounded-md hover:bg-red-600"
+                          >
+                            Delete
+                          </button>
+                        </div>
                         <div className="flex gap-2 mt-2">
                           <button
-                            onClick={() => moveFieldUp(index)}
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent the click from selecting the field
+                              moveFieldUp(index);
+                            }}
                             className="px-2 py-1 bg-gray-200 rounded-md"
                           >
                             ↑
                           </button>
                           <button
-                            onClick={() => moveFieldDown(index)}
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent the click from selecting the field
+                              moveFieldDown(index);
+                            }}
                             className="px-2 py-1 bg-gray-200 rounded-md"
                           >
                             ↓
@@ -401,7 +418,7 @@ const FormBuilder = ({ formId }) => {
         </DragDropContext>
         <button
           onClick={() => addField("Text")}
-          className="w-full px-4 py-2 bg-blue-500 text-white rounded-md mt-4"
+          className="w-full px-4 py-2 bg-white text-blue-500 rounded-md mt-4"
         >
           Add Field
         </button>
@@ -438,7 +455,7 @@ const FormBuilder = ({ formId }) => {
 
         {/* Form Editor or Preview */}
         {showPreview ? (
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md max-h-122 overflow-y-auto">
             <h1 className="text-2xl font-bold mb-4">{formTitle}</h1>
             <p className="text-gray-600 mb-6">{formDescription}</p>
             {fields.map((field, index) => (
@@ -451,7 +468,7 @@ const FormBuilder = ({ formId }) => {
             ))}
             <button
               onClick={handleSubmit}
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              className="px-4 py-2 bg-white text-blue-500 rounded-md hover:bg-blue-600"
             >
               Submit
             </button>
@@ -527,13 +544,13 @@ const FormBuilder = ({ formId }) => {
                           onClick={() => removeOption(selectedField, i)}
                           className="ml-2 px-2 py-1 bg-red-500 text-white rounded-md"
                         >
-                          Remove
+                         Remove 
                         </button>
                       </div>
                     ))}
                     <button
                       onClick={() => addOption(selectedField)}
-                      className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                      className="px-4 py-2 bg-white text-blue-500 rounded-md"
                     >
                       Add Option
                     </button>
